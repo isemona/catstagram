@@ -19,3 +19,52 @@
 	 // hint: take the total likes as a prop, and convert it to state
 
 import React from 'react';
+
+
+class Likes extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            isLiked: false,
+            counter: this.props.likes
+            }
+    }
+
+    // tempCount;
+    // if the user likes the button (this.state.isLiked)
+    //      tempCount = counter should increase
+    // else the user dislikes the button
+    //      tempCount = counter should decrease
+    // set the counter state with temp count
+
+    handleClick = () => {
+        this.setState({
+            isLiked: !this.state.isLiked
+        })
+    }
+
+    render() {
+    	let {counter} = this.state; //change to let bec it will change
+    	let buttontext = "";
+
+        if (this.state.isLiked === true){
+            buttontext = "Liked"
+            counter += 1;
+        }
+        else {
+            buttontext = "Not like yet!"
+            counter -= 1;
+        }
+
+    	return (
+    		<div className="Likes">
+    			<span>{counter}</span>
+    			<button onClick={this.handleClick} className="LikesButton">
+    				{buttontext} 
+    			</button>
+    		</div>
+    	);
+    }
+}
+
+export default Likes;
