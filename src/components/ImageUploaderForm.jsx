@@ -38,9 +38,10 @@ import React from 'react';
 
 class ImageUploaderForm extends React.Component {
     render() {
+
         return(
             <form className="ImageUploaderForm">
-                <input />
+                <input valueg/>
                 <button>Submit</button>
             </form>
         );

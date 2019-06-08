@@ -38,29 +38,41 @@ class Likes extends React.Component {
     // set the counter state with temp count
 
     handleClick = () => {
-        this.setState({
-            isLiked: !this.state.isLiked
+        let {counter} = this.state; //change to let bec it will change, unpacking
+        // if (this.state.isLiked){
+        //     // buttontext = "Liked"
+        //     counter -= 1;
+        // }
+        // else {
+        //     // buttontext = "Not yet liked!"
+        //     counter += 1;
+        // }
+        // this.setState({
+        //     isLiked: !this.state.isLiked, //false
+        //     counter:counter
+        // })
+        let {isLiked} = this.state; //unpacking
+        if (isLiked==false){
+            isLiked = true;
+            counter += 1;
+        } else {
+            isLiked = false;
+            counter -= 1;
+        }
+        //isLiked = !isLiked // refactored setting boolean value back and forth
+
+        this.setState({ //with react you need to call the setState method to call the state, that is why it is here too, with Vue.js you don't need to do this
+            isLiked: !this.state.isLiked, //false
+            counter:counter
         })
     }
 
     render() {
-    	let {counter} = this.state; //change to let bec it will change
-    	let buttontext = "";
-
-        if (this.state.isLiked === true){
-            buttontext = "Liked"
-            counter += 1;
-        }
-        else {
-            buttontext = "Not like yet!"
-            counter -= 1;
-        }
-
     	return (
     		<div className="Likes">
-    			<span>{counter}</span>
+    			<span>{this.state.counter}</span>
     			<button onClick={this.handleClick} className="LikesButton">
-    				{buttontext} 
+    				{this.state.isLiked ? 'Liked!' : 'Not liked (yet)'} 
     			</button>
     		</div>
     	);
